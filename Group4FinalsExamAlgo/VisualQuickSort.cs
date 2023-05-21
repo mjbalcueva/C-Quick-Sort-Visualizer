@@ -7,12 +7,12 @@
             InitializeComponent();
         }
 
-        private int[] _numbersToSort;
+        private int[]? _numbersToSort;
         private int _pivotIndex;
         private int _leftIndex;
         private int _rightIndex;
         private readonly Stack<int> _stack = new Stack<int>();
-        private List<int> _movedNumbers = new List<int>();
+        private readonly List<int> _movedNumbers = new List<int>();
 
         private void BtnSort_Click(object sender, EventArgs e)
         {
@@ -82,7 +82,7 @@
             return i + 1;
         }
 
-        private void Swap(ref int a, ref int b)
+        private static void Swap(ref int a, ref int b)
         {
             (a, b) = (b, a);
         }
@@ -95,10 +95,10 @@
             BtnForward.Enabled = true;
         }
 
-        private string[] AddBracketsToMovedNumbers(int[] numbers)
+        private string[] AddBracketsToMovedNumbers(int[]? numbers)
         {
-            string[] result = new string[numbers.Length];
-            for (int i = 0; i < numbers.Length; i++)
+            var result = new string[numbers.Length];
+            for (var i = 0; i < numbers.Length; i++)
             {
                 if (_movedNumbers.Contains(numbers[i]))
                     result[i] = "[" + numbers[i].ToString() + "]";
